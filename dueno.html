@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panel del Dueño | ELOHIM BARRA DE CAFÉ</title>
+
+<!-- FUENTES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Bodoni+Moda:wght@700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ICONOS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- HTML2CANVAS -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script>
+if(sessionStorage.getItem("adminLogueado") !== "true"){
+    window.location.href = "admin.html";
+}
+</script>
+
+<script type="module" src="dueno.js"></script>
+
+<!-- HOJA DE ESTILOS -->
+<link rel="stylesheet" href="dueno.css">
+
+</head>
+
+<body>
+
+    
+
+<!--==================================
+PANEL DEL DUEÑO
+===================================-->
+
+<div class="panelDueño">
+
+<!--==================================
+BARRA LATERAL
+(Empieza en la Parte 1.2)
+===================================-->
+
+<!--==================================
+BARRA LATERAL
+===================================-->
+
+<aside class="sidebar">
+
+    <!-- LOGO -->
+
+    <div class="logoPanel">
+
+        
+
+        <h2>ELOHIM</h2>
+
+        <span>Panel del Dueño</span>
+
+    </div>
+
+    <!-- MENÚ -->
+
+    <nav class="menuLateral">
+
+        <button class="opcionMenu activa" id="btnInicio">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Inicio</span>
+
+        </button>
+
+
+        <button id="btnSalirPanel" class="btnSalirPanel">
+
+             <i class="fa-solid fa-right-from-bracket"></i>
+
+               Salir
+
+        </button>
+
+        <button class="opcionMenu" id="btnInventario">
+
+            <i class="fa-solid fa-boxes-stacked"></i>
+
+            <span>Inventario del Día</span>
+
+        </button>
+
+        <button class="opcionMenu" id="btnPedidos">
+
+            <i class="fa-solid fa-receipt"></i>
+
+            <span>Pedidos</span>
+
+        </button>
+
+        <button class="opcionMenu" id="btnHistorial">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>Historial</span>
+
+        </button>
+
+        <button class="opcionMenu" id="btnReportes">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            <span>Reportes</span>
+
+        </button>
+
+        <button class="opcionMenu" id="btnAjustes">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Ajustes</span>
+
+        </button>
+
+    </nav>
+
+    <!-- INFORMACIÓN -->
+
+    <div class="infoPanel">
+
+        <p>
+
+            <i class="fa-solid fa-user"></i>
+
+            Administrador
+
+        </p>
+
+        <p>
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            Peto, Yucatán
+
+        </p>
+
+    </div>
+
+    <!-- BOTÓN SALIR -->
+
+    <button id="btnSalirPanel" class="btnSalirPanel">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Salir
+
+    </button>
+
+</aside>
+
+<!--==================================
+CONTENIDO PRINCIPAL
+(Empieza en la Parte 1.3)
+===================================-->
+
+<main class="contenidoPanel">
+
+    <!--==================================
+PANEL SUPERIOR
+===================================-->
+
+<header class="encabezadoPanel">
+
+    <div>
+
+        <h1>Bienvenido, Administrador</h1>
+
+        <p id="fechaActual">
+            Cargando fecha...
+        </p>
+
+    </div>
+
+    <div class="perfilAdministrador">
+
+        <img src="img/perfil.png" alt="Administrador">
+
+        <div>
+
+            <h3>ELOHIM</h3>
+
+            <span>Barra de Café</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!--==================================
+TARJETAS DE ESTADÍSTICAS
+===================================-->
+
+<section class="estadisticas">
+
+    <!-- Ventas -->
+
+    <div class="tarjetaEstadistica">
+
+        <div class="iconoEstadistica">
+
+            <i class="fa-solid fa-dollar-sign"></i>
+
+        </div>
+
+        <div>
+
+            <h4>Ventas del Día</h4>
+
+            <h2 id="ventasDia">$0.00</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Pedidos -->
+
+    <div class="tarjetaEstadistica">
+
+        <div class="iconoEstadistica">
+
+            <i class="fa-solid fa-receipt"></i>
+
+        </div>
+
+        <div>
+
+            <h4>Pedidos</h4>
+
+            <h2 id="totalPedidos">0</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Ingresos -->
+
+    <div class="tarjetaEstadistica">
+
+        <div class="iconoEstadistica">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+        <div>
+
+            <h4>Ingresos Totales</h4>
+
+            <h2 id="ingresosTotales">$0.00</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Inventario -->
+
+    <div class="tarjetaEstadistica">
+
+        <div class="iconoEstadistica">
+
+            <i class="fa-solid fa-box-open"></i>
+
+        </div>
+
+        <div>
+
+            <h4>Productos</h4>
+
+            <h2 id="productosInventario">0</h2>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--==================================
+SECCIÓN PRINCIPAL
+(Empieza en la Parte 1.4)
+===================================-->
+
+
+<!--==================================
+INVENTARIO DEL DÍA
+===================================-->
+
+<section id="seccionInventario" class="panelContenido">
+
+    <div class="cabeceraSeccion">
+        
+        <h2>
+            <i class="fa-solid fa-boxes-stacked"></i>
+            Inventario del Día
+        </h2>
+        
+        <button id="btnAgregarProducto" class="btnGuardar">
+            <i class="fa-solid fa-plus"></i>
+            Agregar Producto
+        </button>
+    </div>
+
+    <div class="tablaInventario">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Imagen</th>
+
+                    <th>Producto</th>
+
+                    <th>Precio</th>
+
+                    <th>Stock</th>
+
+                    <th>Estado</th>
+
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaInventario">
+
+                <!-- JavaScript agregará los productos -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!--==================================
+VENTANA EDITAR PRODUCTO
+===================================-->
+
+<div id="modalInventario" class="modalInventario">
+
+    <div class="contenidoInventario">
+
+        <h2 id="tituloModalProducto">
+            Editar Producto
+        </h2>
+
+        <img id="imgProductoEditar"
+        src=""
+        alt="Producto">
+
+        <input
+        type="file"
+        id="archivoProducto"
+        accept="image/*"
+        style="display:none;">
+
+        <button
+        id="btnCambiarImagen"
+        class="btnGuardar">
+            <i class="fa-solid fa-image"></i>
+            Cambiar Imagen
+        </button>
+
+       <label>Producto</label>
+
+       <input
+       type="text"
+       id="nombreProductoEditar">
+
+       <label>Precio</label>
+
+       <input
+       type="number"
+       id="precioProductoEditar">
+
+       <label>Stock</label>
+
+       <input
+       type="number"
+       id="stockProductoEditar">
+
+        <div class="botonesInventario">
+
+            <button id="btnActualizarProducto">
+
+                Guardar Producto
+
+            </button>
+
+            <button 
+            id="btnEliminarProducto"
+            class="btnEliminar">
+                <i class="fa-solid fa-trash"></i>
+                Eliminar
+             </button>
+
+            <button id="btnCancelarProducto">
+                Salir
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--==================================
+RESUMEN DEL INVENTARIO
+===================================-->
+
+<section class="resumenInventario">
+
+    <div class="cardResumen">
+
+        <h3>Total de Productos</h3>
+
+        <h2 id="cantidadProductos">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="cardResumen">
+
+        <h3>Existencias</h3>
+
+        <h2 id="existenciasTotales">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="cardResumen">
+
+        <h3>Productos Agotados</h3>
+
+        <h2 id="productosAgotados">
+
+            0
+
+        </h2>
+
+    </div>
+
+</section>
+
+<!--==================================
+SIGUE EN LA PARTE 1.5
+PEDIDOS RECIENTES
+===================================-->
+
+<!--==================================
+PEDIDOS RECIENTES
+===================================-->
+
+<section id="seccionPedidos" class="panelContenido">
+
+    <div class="cabeceraSeccion">
+
+        <h2>
+
+            <i class="fa-solid fa-receipt"></i>
+
+            Pedidos Recientes
+
+        </h2>
+
+        <button id="btnActualizarPedidos" class="btnGuardar">
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            Actualizar
+
+        </button>
+
+    </div>
+
+    <div class="contenedorPedidos">
+
+        <!-- Lista de pedidos -->
+
+        <div class="listaPedidos">
+
+            <div id="listaPedidos">
+
+                <!-- JavaScript agregará los pedidos -->
+
+            </div>
+
+        </div>
+
+        <!-- Detalle del pedido -->
+
+        <div class="detallePedido">
+
+            <h3>
+
+                Detalle del Pedido
+
+            </h3>
+
+            <div id="detallePedido">
+
+                <p style="text-align:center;color:#888;">
+
+                    Selecciona un pedido para ver su información.
+
+                </p>
+
+            </div>
+
+            <div class="accionesPedido">
+
+                <button id="btnAceptarPedido" class="btnAccion aceptar">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Aceptar
+
+                </button>
+
+                <button id="btnPreparacion" class="btnAccion preparando">
+
+                    <i class="fa-solid fa-mug-hot"></i>
+
+                    En preparación
+
+                </button>
+
+                <button id="btnListo" class="btnAccion listo">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    Listo
+
+                </button>
+
+                <button id="btnEntregado" class="btnAccion entregado">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Entregado
+
+                </button>
+
+                <button id="btnEliminarPedido" class="btnAccion eliminar">
+                     <i class="fa-solid fa-trash"></i>
+                    Eliminar
+                 </button>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--==================================
+ESTADÍSTICAS RÁPIDAS
+===================================-->
+
+<section class="estadisticasPedidos">
+
+    <div class="cardPedido">
+
+        <h4>Pendientes</h4>
+
+        <h2 id="pedidosPendientes">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="cardPedido">
+
+        <h4>En preparación</h4>
+
+        <h2 id="pedidosPreparacion">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="cardPedido">
+
+        <h4>Listos</h4>
+
+        <h2 id="pedidosListos">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="cardPedido">
+
+        <h4>Entregados</h4>
+
+        <h2 id="pedidosEntregados">
+
+            0
+
+        </h2>
+
+    </div>
+
+</section>
+
+<!--==================================
+SIGUE EN LA PARTE 1.6
+(Historial, Reportes, Ajustes y cierre
+del HTML)
+===================================-->
+
+<!--==================================
+HISTORIAL DE PEDIDOS
+===================================-->
+
+<section id="seccionHistorial" class="panelContenido">
+
+    <div class="cabeceraSeccion">
+
+        <h2>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Historial de Pedidos
+        </h2>
+
+    </div>
+
+    <div id="historialPedidos">
+
+        <!-- El historial se cargará con JavaScript -->
+
+    </div>
+
+</section>
+
+<!--==================================
+REPORTES
+===================================-->
+
+<section id="seccionReportes" class="panelContenido">
+
+    <div class="cabeceraSeccion">
+
+        <h2>
+            <i class="fa-solid fa-chart-column"></i>
+            Reportes
+        </h2>
+
+    </div>
+
+    <div class="reportes">
+
+        <div class="cardReporte">
+
+            <h3>Ventas del Día</h3>
+
+            <h2 id="reporteVentas">$0.00</h2>
+
+        </div>
+
+        <div class="cardReporte">
+
+            <h3>Total de Pedidos</h3>
+
+            <h2 id="reportePedidos">0</h2>
+
+        </div>
+
+        <div class="cardReporte">
+
+            <h3>Productos Vendidos</h3>
+
+            <h2 id="reporteProductos">0</h2>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--==================================
+AJUSTES
+===================================-->
+
+<section id="seccionAjustes" class="panelContenido">
+
+    <div class="cabeceraSeccion">
+
+        <h2>
+            <i class="fa-solid fa-gear"></i>
+            Ajustes
+        </h2>
+
+    </div>
+
+    <div class="tarjetaAjustes">
+
+        <label>Nombre del Negocio</label>
+
+        <input
+        type="text"
+        id="nombreNegocio"
+        value="ELOHIM BARRA DE CAFÉ">
+
+        <label>Teléfono</label>
+
+        <input
+        type="text"
+        id="telefonoNegocio"
+        value="9971397079">
+
+        <label>Dirección</label>
+
+        <textarea id="direccionNegocio">Calle 27 entre 32 y 34, Centro, Peto, Yucatán.</textarea>
+
+        <button
+        id="btnGuardarAjustes"
+        class="btnGuardar">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Guardar Ajustes
+
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+<!--==================================
+JAVASCRIPT
+===================================-->
+
+<script type="module" src="dueno.js"></script>
+
+</body>
+
+</html>
